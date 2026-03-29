@@ -1,26 +1,337 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+/* ============================================
+   LEXIQ — Editorial Dark Luxury Design System
+   Based on Stitch "Lexiq Design Specification"
+   ============================================ */
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  /* ─── Surface Hierarchy ─── */
+  --color-surface-base: #0f131c;
+  --color-surface-lowest: #0a0e16;
+  --color-surface-low: #181c24;
+  --color-surface-container: #1c2028;
+  --color-surface-high: #262a33;
+  --color-surface-highest: #31353e;
+  --color-surface-bright: #353942;
+  --color-surface-variant: #31353e;
+
+  /* ─── Primary Palette ─── */
+  --color-primary: #acc7ff;
+  --color-primary-container: #508ff8;
+  --color-primary-dim: #4F8EF7;
+  --color-primary-fixed: #d7e2ff;
+  --color-on-primary: #002f68;
+
+  /* ─── Secondary Palette ─── */
+  --color-secondary: #bfc6dd;
+  --color-secondary-container: #42495c;
+  --color-on-secondary: #293042;
+
+  /* ─── Tertiary / Accent ─── */
+  --color-tertiary: #ddb7ff;
+  --color-tertiary-container: #b76dff;
+  --color-on-tertiary: #490080;
+
+  /* ─── Text / On-Surface ─── */
+  --color-on-surface: #dfe2ee;
+  --color-on-surface-variant: #c2c6d5;
+  --color-outline: #8c909e;
+  --color-outline-variant: #424753;
+
+  /* ─── Error ─── */
+  --color-error: #ffb4ab;
+  --color-error-container: #93000a;
+
+  /* ─── Inverse ─── */
+  --color-inverse-surface: #dfe2ee;
+  --color-inverse-primary: #005bbf;
+
+  /* ─── Mastery Tier Colors ─── */
+  --color-mastery-learning: #f87171;
+  --color-mastery-familiar: #fb923c;
+  --color-mastery-practiced: #60a5fa;
+  --color-mastery-proficient: #34d399;
+  --color-mastery-mastered: #c084fc;
+
+  /* ─── Fonts ─── */
+  --font-serif: 'Newsreader', 'Georgia', serif;
+  --font-sans: 'Manrope', system-ui, sans-serif;
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+/* ─── Base Styles ─── */
+html {
+  color-scheme: dark;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: var(--color-surface-base);
+  color: var(--color-on-surface);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ─── Scrollbar Styling ─── */
+::-webkit-scrollbar {
+  width: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--color-outline-variant);
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-outline);
+}
+
+/* ─── Typography Scale ─── */
+.text-display-lg {
+  font-family: var(--font-serif);
+  font-size: 3.5rem;
+  line-height: 1.1;
+  font-weight: 400;
+  letter-spacing: -0.02em;
+}
+
+.text-display-md {
+  font-family: var(--font-serif);
+  font-size: 2.75rem;
+  line-height: 1.15;
+  font-weight: 400;
+  letter-spacing: -0.01em;
+}
+
+.text-display-sm {
+  font-family: var(--font-serif);
+  font-size: 2.25rem;
+  line-height: 1.2;
+  font-weight: 400;
+}
+
+.text-headline-lg {
+  font-family: var(--font-serif);
+  font-size: 1.75rem;
+  line-height: 1.3;
+  font-weight: 500;
+}
+
+.text-headline-md {
+  font-family: var(--font-serif);
+  font-size: 1.5rem;
+  line-height: 1.35;
+  font-weight: 500;
+}
+
+.text-headline-sm {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  line-height: 1.4;
+  font-weight: 500;
+}
+
+.text-title-lg {
+  font-family: var(--font-sans);
+  font-size: 1.125rem;
+  line-height: 1.5;
+  font-weight: 600;
+}
+
+.text-title-md {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.5;
+  font-weight: 600;
+}
+
+.text-title-sm {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  line-height: 1.5;
+  font-weight: 600;
+}
+
+.text-body-lg {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.text-body-md {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  line-height: 1.6;
+  font-weight: 400;
+}
+
+.text-body-sm {
+  font-family: var(--font-sans);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+  font-weight: 400;
+}
+
+.text-label-lg {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  line-height: 1.4;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+
+.text-label-md {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  line-height: 1.4;
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  text-transform: uppercase;
+}
+
+.text-label-sm {
+  font-family: var(--font-sans);
+  font-size: 0.6875rem;
+  line-height: 1.4;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+}
+
+/* ─── Glassmorphism ─── */
+.glass {
+  background: rgba(28, 32, 40, 0.6);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.glass-strong {
+  background: rgba(28, 32, 40, 0.85);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* ─── Ambient Shadows (tinted, not black) ─── */
+.shadow-ambient {
+  box-shadow: 0 4px 40px rgba(172, 199, 255, 0.06);
+}
+
+.shadow-ambient-lg {
+  box-shadow: 0 8px 60px rgba(172, 199, 255, 0.08);
+}
+
+.shadow-glow {
+  box-shadow: 0 0 30px rgba(79, 142, 247, 0.2);
+}
+
+.shadow-glow-sm {
+  box-shadow: 0 0 15px rgba(79, 142, 247, 0.15);
+}
+
+/* ─── Ghost Borders (felt, not seen) ─── */
+.border-ghost {
+  border: 1px solid rgba(66, 71, 83, 0.15);
+}
+
+.border-ghost-visible {
+  border: 1px solid rgba(66, 71, 83, 0.3);
+}
+
+/* ─── Animations ─── */
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in-right {
+  from {
+    opacity: 0;
+    transform: translateX(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes glow-pulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(79, 142, 247, 0.15);
+  }
+  50% {
+    box-shadow: 0 0 35px rgba(79, 142, 247, 0.25);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.4s ease-out;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.5s ease-out;
+}
+
+.animate-slide-in-right {
+  animation: slide-in-right 0.4s ease-out;
+}
+
+.animate-glow-pulse {
+  animation: glow-pulse 3s ease-in-out infinite;
+}
+
+/* ─── Skeleton Loader ─── */
+.skeleton {
+  background: linear-gradient(
+    90deg,
+    var(--color-surface-container) 25%,
+    var(--color-surface-high) 50%,
+    var(--color-surface-container) 75%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+  border-radius: 8px;
+}
+
+/* ─── Focus Styles ─── */
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(79, 142, 247, 0.3);
+}
+
+/* ─── Radial Gradient Texture (Hero sections) ─── */
+.bg-hero-gradient {
+  background: 
+    radial-gradient(ellipse at 80% 20%, rgba(80, 143, 248, 0.08) 0%, transparent 60%),
+    var(--color-surface-base);
+}
+
+/* ─── Selection ─── */
+::selection {
+  background: rgba(172, 199, 255, 0.3);
+  color: var(--color-on-surface);
 }
