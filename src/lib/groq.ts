@@ -58,6 +58,24 @@ export async function lookupWord(word: string): Promise<WordLookupResult> {
   return JSON.parse(content) as WordLookupResult;
 }
 
+export async function generateRandomWord(): Promise<WordLookupResult> {
+  const completion = await groq.chat.completions.create({
+    messages: [
+      { role: 'system', content: WORD_LOOKUP_PROMPT },
+      { role: 'user', content: 'Generate a random, interesting, and useful English vocabulary word that is at an intermediate or advanced level. Do not repeat very common words. Please ensure it is a real English word. Return the full JSON object for the word as requested.' },
+    ],
+    model: 'llama-3.3-70b-versatile',
+    temperature: 0.9,
+    max_tokens: 1024,
+    response_format: { type: 'json_object' },
+  });
+
+  const content = completion.choices[0]?.message?.content;
+  if (!content) throw new Error('No response from Groq API');
+
+  return JSON.parse(content) as WordLookupResult;
+}
+
 export async function generateFillInTheBlank(
   word: string,
   definition: string

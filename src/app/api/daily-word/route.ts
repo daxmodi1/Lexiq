@@ -17,38 +17,75 @@ export async function GET() {
     .single() as { data: any };
 
   if (!dailyWord) {
-    // Pick a random word from the global pool
-    const { data: allWords } = await supabase
-      .from('words')
-      .select('id')
-      .limit(100);
+    // Generate a random word via AI if the cron job hasn't run or table is empty
+    const { generateRandomWord } = await import('@/lib/groq');
+    
+    try {
+      const aiWord = await generateRandomWord();
 
-    if (!allWords || allWords.length === 0) {
-      return NextResponse.json({ error: 'No words available' }, { status: 404 });
+      // Check if the word already exists
+      let { data: wordRecord } = await supabase
+        .from('words')
+        .select('id, definition')
+        .ilike('word', aiWord.word)
+        .maybeSingle() as any;
+
+      if (!wordRecord) {
+        // Insert it
+        const { data: insertedWord } = await supabase
+          .from('words')
+          .insert({
+            word: aiWord.word,
+            definition: aiWord.definition,
+            synonyms: aiWord.synonyms,
+            antonyms: aiWord.antonyms,
+            etymology: aiWord.etymology || null,
+            word_family: aiWord.word_family || [],
+            mnemonic: aiWord.mnemonic || null,
+            difficulty: aiWord.difficulty || 'intermediate',
+            part_of_speech: aiWord.part_of_speech || null,
+            phonetic: aiWord.phonetic || null,
+            examples: aiWord.examples || []
+          } as any)
+          .select('id, definition')
+          .single() as any;
+
+        wordRecord = insertedWord;
+      }
+
+      if (wordRecord) {
+        // Generate distractors
+        const { data: otherWords } = await supabase
+          .from('words')
+          .select('id, definition')
+          .neq('id', wordRecord.id)
+          .limit(10) as any;
+
+        const distractors = (otherWords || [])
+          .sort(() => 0.5 - Math.random())
+          .slice(0, 3);
+          
+        const allOptions = [
+          { id: wordRecord.id, text: wordRecord.definition, isCorrect: true },
+          ...distractors.map((d: any) => ({ id: d.id, text: d.definition, isCorrect: false }))
+        ].sort(() => 0.5 - Math.random());
+
+        const { data: created } = await supabase
+          .from('daily_word')
+          .insert({
+            word_id: wordRecord.id,
+            date: today,
+            options: allOptions,
+          } as any)
+          .select('*, words(*)')
+          .single() as any;
+
+        dailyWord = created;
+      }
+    } catch (e) {
+      console.error('Failed to generate daily word on fallback', e);
+      return NextResponse.json({ error: 'Failed to generate word' }, { status: 500 });
     }
-
-    const randomWord = allWords[Math.floor(Math.random() * allWords.length)];
-
-    // Generate 3 distractor definitions
-    const { data: distractors } = await supabase
-      .from('words')
-      .select('definition')
-      .neq('id', randomWord.id)
-      .limit(3);
-
-    const options = distractors?.map((d: { definition: string }) => d.definition) || [];
-
-    const { data: created } = await supabase
-      .from('daily_word')
-      .insert({
-        word_id: randomWord.id,
-        date: today,
-        options: options,
-      })
-      .select('*, words(*)')
-      .single();
-
-    dailyWord = created;
   }
 
   // Check if user already answered today

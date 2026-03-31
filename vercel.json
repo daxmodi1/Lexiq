@@ -1,0 +1,16 @@
+{
+  "crons": [
+    {
+      "path": "/api/cron/daily-word",
+      "schedule": "0 0 * * *"
+    },
+    {
+      "path": "/api/cron/review-queue",
+      "schedule": "0 1 * * *"
+    },
+    {
+      "path": "/api/cron/streak-reset",
+      "schedule": "0 2 * * *"
+    }
+  ]
+}
