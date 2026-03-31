@@ -55,7 +55,7 @@
   --color-mastery-mastered: #c084fc;
 
   /* ─── Fonts ─── */
-  --font-serif: 'Newsreader', 'Georgia', serif;
+  --font-serif: 'Playfair Display', 'Georgia', serif;
   --font-sans: 'Manrope', system-ui, sans-serif;
 }
 
@@ -334,4 +334,14 @@ input:focus, textarea:focus, select:focus {
 ::selection {
   background: rgba(172, 199, 255, 0.3);
   color: var(--color-on-surface);
+}
+
+/* ─── Hero Page Specific Textures ─── */
+.hero-glow {
+  background: radial-gradient(circle at center, rgba(80, 143, 248, 0.15) 0%, rgba(15, 19, 28, 0) 70%);
+}
+
+.dot-grid {
+  background-image: radial-gradient(rgba(223, 226, 238, 0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
 }

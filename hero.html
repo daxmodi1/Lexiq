@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta content="width=device-width, initial-scale=1.0" name="viewport" />
+  <title>LEXIQ | The Curated Lexicon</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,200..800;1,6..72,200..800&amp;family=Manrope:wght@200..800&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
+    rel="stylesheet" />
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            "tertiary-fixed-dim": "#ddb7ff",
+            "on-tertiary-fixed": "#2c0051",
+            "primary": "#acc7ff",
+            "outline": "#8c909e",
+            "on-secondary-container": "#b1b8cf",
+            "on-background": "#dfe2ee",
+            "surface-bright": "#353942",
+            "error-container": "#93000a",
+            "surface-dim": "#0f131c",
+            "surface-variant": "#31353e",
+            "on-secondary-fixed": "#141b2c",
+            "error": "#ffb4ab",
+            "surface-container-high": "#262a33",
+            "primary-fixed": "#d7e2ff",
+            "on-tertiary-container": "#400071",
+            "secondary": "#bfc6dd",
+            "on-tertiary": "#490080",
+            "on-secondary-fixed-variant": "#404659",
+            "secondary-container": "#42495c",
+            "tertiary-fixed": "#f0dbff",
+            "surface": "#0f131c",
+            "inverse-primary": "#005bbf",
+            "on-primary-fixed": "#001a40",
+            "on-error-container": "#ffdad6",
+            "on-secondary": "#293042",
+            "inverse-on-surface": "#2c3039",
+            "secondary-fixed": "#dbe2fa",
+            "surface-container": "#1c2028",
+            "tertiary-container": "#b76dff",
+            "tertiary": "#ddb7ff",
+            "surface-container-lowest": "#0a0e16",
+            "surface-container-low": "#181c24",
+            "on-tertiary-fixed-variant": "#6900b3",
+            "background": "#0f131c",
+            "primary-fixed-dim": "#acc7ff",
+            "outline-variant": "#424753",
+            "on-surface-variant": "#c2c6d5",
+            "on-primary-fixed-variant": "#004492",
+            "primary-container": "#508ff8",
+            "surface-tint": "#acc7ff",
+            "on-primary": "#002f68",
+            "on-primary-container": "#00285b",
+            "inverse-surface": "#dfe2ee",
+            "on-error": "#690005",
+            "on-surface": "#dfe2ee",
+            "secondary-fixed-dim": "#bfc6dd",
+            "surface-container-highest": "#31353e"
+          },
+          fontFamily: {
+            "headline": ["Newsreader", "serif"],
+            "body": ["Manrope", "sans-serif"],
+            "label": ["Manrope", "sans-serif"]
+          },
+          borderRadius: { "DEFAULT": "0.25rem", "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+        },
+      },
+    }
+  </script>
+  <style>
+    body {
+      background-color: #0f131c;
+      color: #dfe2ee;
+      font-family: 'Manrope', sans-serif;
+      overflow-x: hidden;
+    }
+
+    .hero-glow {
+      background: radial-gradient(circle at center, rgba(80, 143, 248, 0.15) 0%, rgba(15, 19, 28, 0) 70%);
+    }
+
+    .dot-grid {
+      background-image: radial-gradient(rgba(223, 226, 238, 0.05) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+  </style>
+</head>
+
+<body class="antialiased selection:bg-primary/30">
+  <!-- TopAppBar -->
+  <nav
+    class="fixed top-0 w-full flex justify-between items-center px-8 py-6 max-w-none bg-[#0f131c]/80 backdrop-blur-xl z-50">
+    <div class="text-2xl font-serif italic tracking-tighter text-[#dfe2ee] font-headline">LEXIQ</div>
+    <div class="hidden md:flex items-center space-x-12">
+      <a class="text-[#dfe2ee]/60 font-sans text-sm uppercase tracking-widest hover:text-[#acc7ff] transition-colors duration-300"
+        href="#">Dictionary</a>
+      <a class="text-[#dfe2ee]/60 font-sans text-sm uppercase tracking-widest hover:text-[#acc7ff] transition-colors duration-300"
+        href="#">Library</a>
+      <a class="text-[#dfe2ee]/60 font-sans text-sm uppercase tracking-widest hover:text-[#acc7ff] transition-colors duration-300"
+        href="#">Mastery</a>
+    </div>
+    <div class="flex items-center space-x-6">
+      <button
+        class="text-[#dfe2ee]/60 font-sans text-sm uppercase tracking-widest hover:text-[#acc7ff] transition-colors duration-300 active:opacity-80 active:scale-95">Sign
+        In</button>
+      <button
+        class="bg-primary-container text-on-primary-container px-6 py-2.5 rounded-xl font-bold text-sm tracking-tight hover:brightness-110 active:scale-95 transition-all">Get
+        Started</button>
+    </div>
+  </nav>
+  <!-- Hero Section -->
+  <main class="relative min-h-screen flex flex-col items-center justify-center pt-20 px-6">
+    <!-- Background Textures -->
+    <div class="absolute inset-0 dot-grid opacity-40 pointer-events-none"></div>
+    <div class="absolute inset-0 hero-glow pointer-events-none"></div>
+    <div class="relative z-10 max-w-4xl w-full text-center">
+      <!-- Mastery Chip -->
+      <div
+        class="mb-12 inline-flex items-center space-x-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/10">
+        <span class="w-2 h-2 rounded-full bg-primary animate-pulse"></span>
+        <span class="text-primary font-label text-[10px] font-bold uppercase tracking-[0.2em]">Word of the Day</span>
+      </div>
+      <!-- The Hero Word -->
+      <div class="relative inline-block mb-4">
+        <h1
+          class="text-8xl md:text-[10rem] font-headline italic tracking-tighter leading-none text-on-background drop-shadow-2xl">
+          ephemeral
+        </h1>
+        <!-- Subtle underglow -->
+        <div
+          class="absolute -bottom-4 left-1/2 -translate-x-1/2 w-4/5 h-12 bg-primary/20 blur-[60px] pointer-events-none">
+        </div>
+      </div>
+      <!-- Phonetic & Meta -->
+      <div class="flex flex-wrap items-center justify-center gap-6 mb-12 opacity-80">
+        <span class="font-body text-xl text-on-surface-variant italic">/ɪˈfem.ər.əl/</span>
+        <button
+          class="w-10 h-10 rounded-full bg-surface-container flex items-center justify-center hover:bg-surface-container-highest transition-colors group">
+          <span class="material-symbols-outlined text-primary group-hover:scale-110 transition-transform"
+            data-icon="volume_up">volume_up</span>
+        </button>
+        <span
+          class="px-3 py-1 rounded-lg bg-surface-container-high text-on-surface-variant font-label text-xs font-bold uppercase tracking-widest">adjective</span>
+      </div>
+      <!-- Definition -->
+      <div class="max-w-xl mx-auto mb-16">
+        <p class="text-2xl md:text-3xl font-body font-light text-on-surface leading-relaxed tracking-tight">
+          Lasting for a very short time; transitory.
+        </p>
+      </div>
+      <!-- CTAs -->
+      <div class="flex flex-col md:flex-row items-center justify-center gap-6">
+        <button
+          class="group relative px-10 py-5 bg-primary-container text-on-primary-container rounded-xl font-bold text-lg tracking-tight hover:brightness-110 transition-all active:scale-95 flex items-center gap-3">
+          Get Started Free
+          <span class="material-symbols-outlined transition-transform group-hover:translate-x-1"
+            data-icon="arrow_forward">arrow_forward</span>
+        </button>
+        <button
+          class="px-10 py-5 bg-surface-container-high text-on-surface rounded-xl font-bold text-lg tracking-tight hover:bg-surface-container-highest transition-all active:scale-95">
+          See how it works
+        </button>
+      </div>
+    </div>
+    <!-- Floating Decorative Element (Abstract Imagery) -->
+    <div class="absolute top-1/4 -left-20 w-64 h-64 opacity-20 hidden lg:block">
+      <img alt="Abstract aesthetic" class="w-full h-full object-cover rounded-full mix-blend-screen grayscale"
+        data-alt="abstract swirl of smoke and ink in water with deep blue and charcoal tones moody lighting high contrast"
+        src="https://lh3.googleusercontent.com/aida-public/AB6AXuDyEomVcfOJrRapZwznyafWNxeVLFuqlNB_40tYCPfqi7bnZ3nYEZwjUs0mr-9rJZU99fvOthM5uFKrPO8ybglTXRSo-24MA3hnVf62AJDMR291Kc0-f-W840RcvugycGOEGtcHi73ptAs20DVXAhyrgM3uT3W9pNDV9zhsqCe-XkLkWig9HAGv0gd_EO5bp8cVkzOUk1EB9sktqWaUFF0kglShbR76FRAeV_eT14NP8WD5DGL2m63ptoKOcNQrMLuF2HgAzUTXmg" />
+    </div>
+  </main>
+  <!-- Bottom Social Proof Bar (BottomNavBar Proxy) -->
+  <div
+    class="fixed bottom-0 left-0 w-full flex justify-around items-center py-6 px-12 bg-[#1c2028] shadow-[0_-10px_40px_rgba(0,0,0,0.5)] z-50">
+    <div class="flex flex-col items-center justify-center text-[#dfe2ee]/40 group cursor-default">
+      <span class="material-symbols-outlined mb-1 group-hover:text-primary transition-colors"
+        data-icon="menu_book">menu_book</span>
+      <span class="font-sans text-[10px] font-bold uppercase tracking-[0.2em]">12.4k Words</span>
+    </div>
+    <div class="flex flex-col items-center justify-center text-[#acc7ff] cursor-default">
+      <span class="material-symbols-outlined mb-1 text-orange-400 animate-pulse"
+        data-icon="local_fire_department">local_fire_department</span>
+      <span class="font-sans text-[10px] font-bold uppercase tracking-[0.2em]">14 Day Streak</span>
+    </div>
+    <div class="flex flex-col items-center justify-center text-[#dfe2ee]/40 group cursor-default">
+      <span class="material-symbols-outlined mb-1 group-hover:text-primary transition-colors"
+        data-icon="insights">insights</span>
+      <span class="font-sans text-[10px] font-bold uppercase tracking-[0.2em]">85% Mastery</span>
+    </div>
+    <div class="flex flex-col items-center justify-center text-[#dfe2ee]/40 group cursor-default">
+      <span class="material-symbols-outlined mb-1 group-hover:text-primary transition-colors"
+        data-icon="military_tech">military_tech</span>
+      <span class="font-sans text-[10px] font-bold uppercase tracking-[0.2em]">Global Rank</span>
+    </div>
+  </div>
+  <!-- Background Decoration -->
+  <div class="fixed -bottom-24 -right-24 w-96 h-96 bg-primary/5 rounded-full blur-[120px] pointer-events-none"></div>
+</body>
+
+</html>

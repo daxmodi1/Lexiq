@@ -154,7 +154,7 @@ export default function VocabularyContent({ initialWords }: VocabularyContentPro
               <div className="flex-1 min-w-0">
                 <div className="flex items-center gap-3 mb-1">
                   <Link
-                    href={`/search?q=${encodeURIComponent(item.words?.word || '')}`}
+                    href={`/dashboard/search?q=${encodeURIComponent(item.words?.word || '')}`}
                     className="text-title-lg text-on-surface font-serif italic hover:text-primary transition-colors"
                   >
                     {item.words?.word}
@@ -207,7 +207,7 @@ export default function VocabularyContent({ initialWords }: VocabularyContentPro
                 Start exploring words to build your personal vocabulary
               </p>
               <Link
-                href="/search"
+                href="/dashboard/search"
                 className="inline-flex items-center gap-2 px-6 py-3 bg-primary-container text-white rounded-xl text-title-sm hover:brightness-110 transition-all shadow-glow-sm"
               >
                 <span className="material-symbols-outlined text-[20px]">search</span>

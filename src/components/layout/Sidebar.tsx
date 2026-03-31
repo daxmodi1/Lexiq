@@ -4,15 +4,18 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 
 const navItems = [
-  { href: '/', icon: 'dashboard', label: 'Dashboard' },
-  { href: '/search', icon: 'search', label: 'Explore' },
-  { href: '/vocabulary', icon: 'menu_book', label: 'My Words' },
-  { href: '/quiz/daily', icon: 'workspace_premium', label: 'Daily Challenge' },
+  { href: '/dashboard', icon: 'dashboard', label: 'Dashboard' },
+  { href: '/dashboard/search', icon: 'search', label: 'Explore' },
+  { href: '/dashboard/vocabulary', icon: 'menu_book', label: 'My Words' },
+  { href: '/dashboard/collections', icon: 'folder', label: 'Collections' },
+  { href: '/dashboard/daily-word', icon: 'today', label: 'Word of the Day' },
+  { href: '/dashboard/quiz/daily', icon: 'workspace_premium', label: 'Daily Challenge' },
+  { href: '/dashboard/quiz/timed', icon: 'timer', label: 'Timed Challenge' },
+  { href: '/dashboard/quiz/fill-blank', icon: 'edit_note', label: 'Fill in Blank' },
 ];
 
 const bottomItems = [
-  { href: '/settings', icon: 'settings', label: 'Settings' },
-  { href: '/help', icon: 'help_outline', label: 'Help' },
+  { href: '/dashboard/settings', icon: 'person', label: 'Profile' },
 ];
 
 export default function Sidebar() {
@@ -38,7 +41,7 @@ export default function Sidebar() {
         <nav className="flex-1 px-3 space-y-1">
           {navItems.map((item) => {
             const isActive = pathname === item.href || 
-              (item.href !== '/' && pathname.startsWith(item.href));
+              (item.href !== '/dashboard' && pathname.startsWith(item.href));
             
             return (
               <Link
@@ -84,7 +87,7 @@ export default function Sidebar() {
         <div className="flex items-center justify-around px-2 py-2">
           {[navItems[0], navItems[2], navItems[1], navItems[3]].map((item) => {
             const isActive = pathname === item.href || 
-              (item.href !== '/' && pathname.startsWith(item.href));
+              (item.href !== '/dashboard' && pathname.startsWith(item.href));
             
             return (
               <Link
