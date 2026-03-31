@@ -25,8 +25,7 @@ export async function GET(request: Request) {
     const dateString = thirtyDaysAgo.toISOString();
 
     // Set in_review_queue to true for user_words that haven't been reviewed recently
-    const { data, error } = await supabase
-      .from('user_words')
+    const { data, error } = await (supabase.from('user_words') as any)
       .update({ in_review_queue: true })
       .lt('last_reviewed_at', dateString)
       .eq('in_review_queue', false)

@@ -26,8 +26,7 @@ export async function GET(request: Request) {
     // did not do a quiz "yesterday" nor "today". Their streak is broken.
     const cutoffString = cutoff.toISOString().split('T')[0]; // "YYYY-MM-DD"
     
-    const { data, error } = await supabase
-      .from('user_profiles')
+    const { data, error } = await (supabase.from('user_profiles') as any)
       .update({ streak_count: 0 })
       .lt('streak_last_date', cutoffString)
       .gt('streak_count', 0)

@@ -42,7 +42,15 @@ export type Database = {
           last_reviewed_at?: string;
           in_review_queue?: boolean;
         };
-        Update: Partial<Database['public']['Tables']['user_words']['Insert']>;
+        Update: {
+          id?: string;
+          user_id?: string;
+          word_id?: string;
+          mastery_score?: number;
+          date_added?: string;
+          last_reviewed_at?: string;
+          in_review_queue?: boolean;
+        };
       };
       collections: {
         Row: {
@@ -173,7 +181,16 @@ export type Database = {
           created_at?: string;
           updated_at?: string;
         };
-        Update: Partial<Database['public']['Tables']['user_profiles']['Insert']>;
+        Update: {
+          id?: string;
+          display_name?: string;
+          streak_count?: number;
+          streak_last_date?: string;
+          best_timed_score?: number;
+          auto_add_enabled?: boolean;
+          created_at?: string;
+          updated_at?: string;
+        };
       };
       achievements: {
         Row: {
