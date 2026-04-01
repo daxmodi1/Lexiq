@@ -20,6 +20,9 @@ export const metadata: Metadata = {
   description:
     "Discover, understand, and truly learn words. Lexiq builds your intelligent vocabulary profile, tracks mastery, and delivers personalized daily practice.",
   keywords: ["vocabulary", "dictionary", "word learning", "AI", "language"],
+  icons: {
+    icon: "/logo.svg",
+  },
 };
 
 export default function RootLayout({
