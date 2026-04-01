@@ -26,22 +26,22 @@ export default function HeroPage() {
 
           {/* Links */}
           <div className="hidden lg:flex items-center gap-10 text-[13px] font-medium text-[#adb2c4] uppercase tracking-wider">
-            <Link href="/dashboard/search" className="hover:text-white hover:underline underline-offset-4 transition">Dictionary</Link>
-            <Link href="/dashboard/vocabulary" className="hover:text-white hover:underline underline-offset-4 transition">Library</Link>
-            <Link href="/dashboard" className="hover:text-white hover:underline underline-offset-4 transition">Mastery</Link>
+            <Link href="/dashboard/search" className="hover:text-white hover:underline underline-offset-4 transition cursor-pointer">Dictionary</Link>
+            <Link href="/dashboard/vocabulary" className="hover:text-white hover:underline underline-offset-4 transition cursor-pointer">Library</Link>
+            <Link href="/dashboard" className="hover:text-white hover:underline underline-offset-4 transition cursor-pointer">Mastery</Link>
           </div>
 
           {/* CTA */}
           <div className="hidden md:flex items-center gap-6">
             <Link
               href="/login"
-              className="text-[#adb2c4] font-semibold text-sm hover:text-white transition-colors uppercase tracking-wider"
+              className="text-[#adb2c4] font-semibold text-sm hover:text-white transition-colors uppercase tracking-wider cursor-pointer"
             >
               Sign In
             </Link>
             <Link
               href="/signup"
-              className="inline-flex items-center justify-center bg-primary-container hover:brightness-110 text-white px-6 py-2.5 rounded-full font-bold text-sm transition-all shadow-glow-sm"
+              className="inline-flex items-center justify-center bg-primary-container hover:brightness-110 text-white px-6 py-2.5 rounded-full font-bold text-sm transition-all shadow-glow-sm cursor-pointer"
             >
               Get Started
             </Link>
@@ -80,13 +80,13 @@ export default function HeroPage() {
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 w-full mb-8">
             <Link
               href="/signup"
-              className="w-full sm:w-auto px-10 py-4 bg-primary-container hover:brightness-110 text-white rounded-full font-bold text-base transition-all shadow-[0_0_35px_rgba(80,143,248,0.3)] flex items-center justify-center gap-2"
+              className="w-full sm:w-auto px-10 py-4 bg-primary-container hover:brightness-110 text-white rounded-full font-bold text-base transition-all shadow-[0_0_35px_rgba(80,143,248,0.3)] flex items-center justify-center gap-2 cursor-pointer"
             >
               Start Learning for FREE &rarr;
             </Link>
             <Link
               href="/dashboard/search"
-              className="w-full sm:w-auto px-10 py-4 bg-transparent border border-white/20 hover:bg-white/5 text-[#dfe2ee] rounded-full font-bold text-base transition-all text-center"
+              className="w-full sm:w-auto px-10 py-4 bg-transparent border border-white/20 hover:bg-white/5 text-[#dfe2ee] rounded-full font-bold text-base transition-all text-center cursor-pointer"
             >
               Explore Dictionary
             </Link>
