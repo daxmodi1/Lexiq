@@ -183,7 +183,7 @@ export default function DailyQuizContent({ userWords }: DailyQuizContentProps) {
                 <span className={`material-symbols-outlined text-[20px] ${result.correct ? 'text-emerald-400' : 'text-rose-400'}`}>
                   {result.correct ? 'check_circle' : 'cancel'}
                 </span>
-                <span className="text-title-md text-on-surface font-serif italic flex-1">{result.word}</span>
+                <span className="text-title-md text-on-surface flex-1">{result.word}</span>
                 {update && (
                   <span className={`text-body-sm font-medium ${update.new_score > update.old_score ? 'text-emerald-400' : 'text-rose-400'}`}>
                     {update.old_score} → {update.new_score}
@@ -273,7 +273,7 @@ export default function DailyQuizContent({ userWords }: DailyQuizContentProps) {
       {currentQuestion && (
         <div className="bg-surface-low rounded-2xl p-8 lg:p-12 mb-6">
           <p className="text-label-md text-on-surface-variant mb-4 normal-case">What does this word mean?</p>
-          <h2 className="text-display-md text-on-surface italic" style={{ fontFamily: 'var(--font-serif)' }}>
+          <h2 className="text-display-md text-on-surface">
             {currentQuestion.word}
           </h2>
         </div>

@@ -145,7 +145,7 @@ export default function FillBlankContent({ userWords }: { userWords: any[] }) {
               <span className={`material-symbols-outlined text-[20px] ${r.correct ? 'text-emerald-400' : 'text-rose-400'}`}>
                 {r.correct ? 'check_circle' : 'cancel'}
               </span>
-              <span className="text-title-md text-on-surface font-serif italic flex-1">{r.word}</span>
+              <span className="text-title-md text-on-surface flex-1">{r.word}</span>
               {!r.correct && <span className="text-body-sm text-on-surface-variant">You typed: {r.userAnswer}</span>}
             </div>
           ))}
@@ -204,7 +204,7 @@ export default function FillBlankContent({ userWords }: { userWords: any[] }) {
                 value={userAnswer}
                 onChange={(e) => setUserAnswer(e.target.value)}
                 placeholder="Type the missing word..."
-                className="flex-1 px-5 py-4 bg-surface-low rounded-xl text-headline-sm text-on-surface placeholder:text-outline focus:shadow-glow-sm font-serif italic"
+                className="flex-1 px-5 py-4 bg-surface-low rounded-xl text-headline-sm text-on-surface placeholder:text-outline focus:shadow-glow-sm"
                 autoFocus
                 autoComplete="off"
               />
@@ -235,7 +235,7 @@ export default function FillBlankContent({ userWords }: { userWords: any[] }) {
               </p>
               {!isCorrect && (
                 <p className="text-body-md text-on-surface-variant">
-                  The answer was <strong className="text-on-surface font-serif italic">{q.word}</strong>
+                  The answer was <strong className="text-on-surface font-bold">{q.word}</strong>
                 </p>
               )}
             </div>

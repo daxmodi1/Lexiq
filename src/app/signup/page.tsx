@@ -3,6 +3,7 @@
 import { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { createClient } from '@/lib/supabase/client';
 
 export default function SignUpPage() {
@@ -79,9 +80,13 @@ export default function SignUpPage() {
       <div className="w-full max-w-md animate-slide-up">
         <div className="text-center mb-10">
           <div className="inline-flex items-center gap-3 mb-4">
-            <div className="w-12 h-12 rounded-xl bg-primary-container flex items-center justify-center shadow-glow">
-              <span className="text-white font-serif text-2xl font-bold italic">L</span>
-            </div>
+            <Image
+              src="/logo.svg"
+              alt="Lexiq Logo"
+              width={48}
+              height={48}
+              className="rounded-xl shadow-glow"
+            />
           </div>
           <h1 className="text-display-sm text-on-surface mb-2">Begin your journey</h1>
           <p className="text-body-lg text-on-surface-variant">

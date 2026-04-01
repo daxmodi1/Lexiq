@@ -2,6 +2,7 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import Image from 'next/image';
 
 const navItems = [
   { href: '/dashboard', icon: 'dashboard', label: 'Dashboard' },
@@ -28,9 +29,13 @@ export default function Sidebar() {
         {/* Logo */}
         <div className="px-6 py-8">
           <Link href="/" className="flex items-center gap-3 group">
-            <div className="w-9 h-9 rounded-lg bg-primary-container flex items-center justify-center shadow-glow-sm transition-shadow group-hover:shadow-glow">
-              <span className="text-white font-serif text-lg font-bold italic">L</span>
-            </div>
+            <Image
+              src="/logo.svg"
+              alt="Lexiq Logo"
+              width={36}
+              height={36}
+              className="rounded-lg shadow-glow-sm transition-shadow group-hover:shadow-glow"
+            />
             <span className="text-display-sm text-on-surface tracking-tight" style={{ fontSize: '1.5rem' }}>
               LEXIQ
             </span>

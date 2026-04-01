@@ -87,7 +87,7 @@ export default function SearchContent() {
       {/* Hero Search */}
       <div className="text-center mb-10">
         <h1 className="text-display-md text-on-surface mb-3">
-          Explore the <span className="italic">lexicon</span>
+          Explore the lexicon
         </h1>
         <p className="text-body-lg text-on-surface-variant mb-8">
           Discover the depth, origin, and beauty of any word
@@ -157,7 +157,7 @@ export default function SearchContent() {
           <div className="w-20 h-20 rounded-full bg-surface-low flex items-center justify-center mx-auto mb-6">
             <span className="material-symbols-outlined text-outline text-4xl">auto_stories</span>
           </div>
-          <p className="text-headline-sm text-on-surface-variant mb-2 italic" style={{ fontFamily: 'var(--font-serif)' }}>
+          <p className="text-headline-sm text-on-surface-variant mb-2">
             &ldquo;A word after a word after a word is power.&rdquo;
           </p>
           <p className="text-label-md text-outline">— Margaret Atwood</p>

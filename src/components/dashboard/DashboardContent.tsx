@@ -64,7 +64,7 @@ export default function DashboardContent({
         <div className="absolute top-0 right-0 w-64 h-64 bg-primary/8 rounded-full blur-[80px] pointer-events-none" />
         <div className="relative z-10">
           <h1 className="text-display-md text-on-surface mb-3">
-            {getGreeting()}, <span className="italic">{firstName}.</span>
+            {getGreeting()}, <span>{firstName}.</span>
           </h1>
           <p className="text-body-lg text-on-surface-variant max-w-lg">
             {totalWords > 0
@@ -205,7 +205,7 @@ export default function DashboardContent({
               >
                 <div className="flex items-center gap-4">
                   <div>
-                    <h4 className="text-title-md text-on-surface font-serif italic">{item.words?.word}</h4>
+                    <h4 className="text-title-md text-on-surface">{item.words?.word}</h4>
                     <p className="text-body-sm text-on-surface-variant truncate max-w-xs">{item.words?.definition}</p>
                   </div>
                 </div>

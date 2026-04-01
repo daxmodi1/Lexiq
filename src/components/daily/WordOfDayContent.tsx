@@ -59,7 +59,7 @@ export default function WordOfDayContent({ dailyWord, userAnswer }: { dailyWord:
       <div className="bg-surface-low rounded-3xl p-8 lg:p-12 mb-6">
         {/* Word */}
         <div className="text-center mb-8">
-          <h2 className="text-display-lg text-on-surface mb-3 italic" style={{ fontFamily: 'var(--font-serif)', fontSize: '3rem' }}>
+          <h2 className="text-display-lg text-on-surface mb-3" style={{ fontSize: '3rem' }}>
             {word?.word}
           </h2>
           {word?.phonetic && (

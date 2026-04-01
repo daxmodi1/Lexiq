@@ -286,7 +286,7 @@ export default function TimedChallengeContent({ userWords, bestScore }: TimedCha
         <>
           <div className="bg-surface-low rounded-2xl p-8 lg:p-10 mb-5">
             <p className="text-label-md text-on-surface-variant mb-3 normal-case">Define this word</p>
-            <h2 className="text-display-md text-on-surface italic" style={{ fontFamily: 'var(--font-serif)' }}>
+            <h2 className="text-display-md text-on-surface">
               {currentQuestion.word}
             </h2>
           </div>

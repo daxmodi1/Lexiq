@@ -110,7 +110,7 @@ export default function ProfileContent({ profile, email, userWords, quizHistory,
       <div className="bg-surface-low rounded-2xl p-6 lg:p-8">
         <div className="flex items-start gap-6">
           <div className="w-16 h-16 rounded-full bg-primary-container flex items-center justify-center flex-shrink-0">
-            <span className="text-white text-2xl font-serif font-bold italic">
+            <span className="text-white text-2xl font-bold">
               {(displayName || email)[0]?.toUpperCase() || 'U'}
             </span>
           </div>

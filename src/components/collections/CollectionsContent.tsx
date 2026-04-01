@@ -197,7 +197,7 @@ export default function CollectionsContent({ initialCollections, userWords }: Co
                         {col.words.map((w) => (
                           <div key={w.id} className="flex items-center gap-3 py-2 px-3 rounded-lg hover:bg-surface-container group">
                             <Link href={`/dashboard/search?q=${encodeURIComponent(w.words?.word)}`} className="flex-1">
-                              <span className="text-title-sm text-on-surface font-serif italic">{w.words?.word}</span>
+                              <span className="text-title-sm text-on-surface">{w.words?.word}</span>
                               <span className="text-body-sm text-on-surface-variant ml-3">{w.words?.definition?.slice(0, 60)}...</span>
                             </Link>
                             <span className={`px-2 py-0.5 rounded-full text-[10px] font-medium capitalize ${getDifficultyColor(w.words?.difficulty as 'beginner')}`}>

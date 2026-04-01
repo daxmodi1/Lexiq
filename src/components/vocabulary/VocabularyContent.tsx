@@ -155,7 +155,7 @@ export default function VocabularyContent({ initialWords }: VocabularyContentPro
                 <div className="flex items-center gap-3 mb-1">
                   <Link
                     href={`/dashboard/search?q=${encodeURIComponent(item.words?.word || '')}`}
-                    className="text-title-lg text-on-surface font-serif italic hover:text-primary transition-colors"
+                    className="text-title-lg text-on-surface hover:text-primary transition-colors"
                   >
                     {item.words?.word}
                   </Link>
