@@ -2,6 +2,32 @@ import { createClient } from '@/lib/supabase/server';
 import CollectionsContent from '@/components/collections/CollectionsContent';
 import { redirect } from 'next/navigation';
 
+type CollectionPreviewWord = {
+  word: string;
+  definition: string;
+  difficulty: string;
+};
+
+function normalizeCollectionWord(value: unknown): CollectionPreviewWord {
+  const relation = Array.isArray(value) ? value[0] : value;
+
+  if (!relation || typeof relation !== 'object') {
+    return {
+      word: '',
+      definition: '',
+      difficulty: 'beginner',
+    };
+  }
+
+  const record = relation as Partial<CollectionPreviewWord>;
+
+  return {
+    word: record.word ?? '',
+    definition: record.definition ?? '',
+    difficulty: record.difficulty ?? 'beginner',
+  };
+}
+
 export default async function CollectionsPage() {
   const supabase = await createClient();
   const { data: { user } } = await supabase.auth.getUser();
@@ -52,7 +78,7 @@ export default async function CollectionsPage() {
       if (group.length < 5) {
         group.push({
           id: item.id,
-          words: item.words,
+          words: normalizeCollectionWord(item.words),
         });
       }
 
