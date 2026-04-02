@@ -168,28 +168,6 @@ export default function WordCard({
           )}
         </div>
 
-        {/* Etymology */}
-        {word.etymology && (
-          <div className="bg-surface-low rounded-2xl p-6 lg:p-8">
-            <div className="flex items-center gap-2 mb-3">
-              <span className="material-symbols-outlined text-amber-400 text-[20px]">history_edu</span>
-              <h3 className="text-title-md text-on-surface">Etymology</h3>
-            </div>
-            <p className="text-body-lg text-on-surface-variant leading-relaxed">{word.etymology}</p>
-          </div>
-        )}
-
-        {/* Mnemonic */}
-        {word.mnemonic && (
-          <div className="bg-surface-low rounded-2xl p-6 lg:p-8">
-            <div className="flex items-center gap-2 mb-3">
-              <span className="material-symbols-outlined text-purple-400 text-[20px]">lightbulb</span>
-              <h3 className="text-title-md text-on-surface">Mnemonic</h3>
-            </div>
-            <p className="text-body-lg text-on-surface-variant leading-relaxed">{word.mnemonic}</p>
-          </div>
-        )}
-
         {/* Word Family */}
         {word.word_family && word.word_family.length > 0 && (
           <div className="bg-surface-low rounded-2xl p-6 lg:col-span-2">

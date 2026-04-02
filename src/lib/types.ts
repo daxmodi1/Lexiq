@@ -8,9 +8,7 @@ export type Database = {
           definition: string;
           synonyms: string[];
           antonyms: string[];
-          etymology: string | null;
           word_family: string[];
-          mnemonic: string | null;
           difficulty: 'beginner' | 'intermediate' | 'advanced' | 'rare';
           part_of_speech: string | null;
           phonetic: string | null;

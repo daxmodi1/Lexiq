@@ -92,14 +92,6 @@ export default function WordOfDayContent({ dailyWord, userAnswer }: { dailyWord:
           </div>
         )}
 
-        {/* Etymology */}
-        {word?.etymology && (
-          <div className="mb-6">
-            <h3 className="text-label-lg text-on-surface-variant mb-2 normal-case">Etymology</h3>
-            <p className="text-body-lg text-on-surface-variant">{word.etymology}</p>
-          </div>
-        )}
-
         {/* Synonyms / Antonyms */}
         <div className="grid grid-cols-2 gap-4">
           {word?.synonyms && word.synonyms.length > 0 && (

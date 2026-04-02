@@ -9,9 +9,7 @@ export interface WordLookupResult {
   definition: string;
   synonyms: string[];
   antonyms: string[];
-  etymology: string;
   word_family: string[];
-  mnemonic: string;
   difficulty: 'beginner' | 'intermediate' | 'advanced' | 'rare';
   part_of_speech: string;
   phonetic: string;
@@ -22,12 +20,10 @@ const WORD_LOOKUP_PROMPT = `You are a comprehensive dictionary and vocabulary ex
 
 {
   "word": "the word in lowercase",
-  "definition": "a clear, complete primary definition (1-2 sentences)",
+  "definition": "a clear, concise, medium-length primary definition (maximum 2 sentences, 15-25 words)",
   "synonyms": ["synonym1", "synonym2", "synonym3", "synonym4", "synonym5"],
   "antonyms": ["antonym1", "antonym2", "antonym3"],
-  "etymology": "origin and history of the word, including root language and evolution",
   "word_family": ["related form 1", "related form 2", "related form 3"],
-  "mnemonic": "a creative, memorable trick or association to help remember the word",
   "difficulty": "one of: beginner, intermediate, advanced, rare",
   "part_of_speech": "primary part of speech (noun, verb, adjective, adverb, etc.)",
   "phonetic": "IPA pronunciation notation",
@@ -35,9 +31,9 @@ const WORD_LOOKUP_PROMPT = `You are a comprehensive dictionary and vocabulary ex
 }
 
 Rules:
+- definition MUST be medium length: not too short, but not a paragraph. Aim for 15-25 words.
 - difficulty should be based on word frequency: top 5000 = beginner, academic/professional = intermediate, literary/discipline-specific = advanced, archaic/obscure = rare
 - examples should be natural, varied, and show different contexts
-- mnemonic should be creative and memorable, not just a definition rephrased
 - Return ONLY the JSON object, no markdown, no commentary`;
 
 export async function lookupWord(word: string): Promise<WordLookupResult> {
