@@ -58,7 +58,7 @@ export default function HeroPage() {
             </span>
           </div>
 
-          <h1 className="text-5xl md:text-7xl lg:text-[84px] font-serif mb-6 leading-[1.15] text-[#eef0f8] drop-shadow-2xl">
+          <h1 className="text-5xl md:text-7xl lg:text-[84px] font-serif mb-6 leading-[1.15] text-[#eef0f8] drop-shadow-2xl max-w-4xl mx-auto text-balance">
             Master Language at the Bleeding Edge of AI
           </h1>
 

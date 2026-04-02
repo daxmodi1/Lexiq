@@ -55,8 +55,8 @@
   --color-mastery-mastered: #c084fc;
 
   /* ─── Fonts ─── */
-  --font-serif: 'Playfair Display', 'Georgia', serif;
-  --font-sans: 'Manrope', system-ui, sans-serif;
+  --font-serif: var(--font-instrument), 'Instrument Serif', 'Georgia', serif;
+  --font-sans: var(--font-manrope), 'Manrope', system-ui, sans-serif;
 }
 
 /* ─── Base Styles ─── */
