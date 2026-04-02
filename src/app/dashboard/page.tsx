@@ -1,6 +1,43 @@
 import { createClient } from '@/lib/supabase/server';
 import DashboardContent from '@/components/dashboard/DashboardContent';
+import type { Word } from '@/lib/types';
 import { redirect } from 'next/navigation';
+
+function normalizeWord(value: unknown): Word {
+  const relation = Array.isArray(value) ? value[0] : value;
+
+  if (!relation || typeof relation !== 'object') {
+    return {
+      id: '',
+      word: '',
+      definition: '',
+      synonyms: [],
+      antonyms: [],
+      word_family: [],
+      difficulty: 'beginner',
+      part_of_speech: null,
+      phonetic: null,
+      examples: [],
+      created_at: '',
+    };
+  }
+
+  const record = relation as Partial<Word>;
+
+  return {
+    id: record.id ?? '',
+    word: record.word ?? '',
+    definition: record.definition ?? '',
+    synonyms: Array.isArray(record.synonyms) ? record.synonyms : [],
+    antonyms: Array.isArray(record.antonyms) ? record.antonyms : [],
+    word_family: Array.isArray(record.word_family) ? record.word_family : [],
+    difficulty: record.difficulty ?? 'beginner',
+    part_of_speech: record.part_of_speech ?? null,
+    phonetic: record.phonetic ?? null,
+    examples: Array.isArray(record.examples) ? record.examples : [],
+    created_at: record.created_at ?? '',
+  };
+}
 
 export default async function DashboardPage() {
   const supabase = await createClient();
@@ -41,7 +78,12 @@ export default async function DashboardPage() {
   });
 
   const averageMastery = totalWords > 0 ? Math.round(totalMastery / totalWords) : 0;
-  const recentWords = userWordsData.slice(0, 5);
+  const recentWords = userWordsData.slice(0, 5).map((item: Record<string, unknown>) => ({
+    id: String(item.id ?? ''),
+    mastery_score: Number(item.mastery_score ?? 0),
+    date_added: String(item.date_added ?? ''),
+    words: normalizeWord(item.words),
+  }));
   const reviewQueueCount = userWordsData.filter((uw: Record<string, unknown>) => uw.in_review_queue).length;
 
   return (
