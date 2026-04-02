@@ -1,5 +1,4 @@
 import { createClient } from '@/lib/supabase/server';
-import AppShell from '@/components/layout/AppShell';
 import DailyQuizContent from '@/components/quiz/DailyQuizContent';
 import { redirect } from 'next/navigation';
 
@@ -14,14 +13,10 @@ export default async function DailyQuizPage() {
   // Fetch user's words for personal quiz
   const { data: userWords } = await supabase
     .from('user_words')
-    .select('*, words(*)')
+    .select('id, mastery_score, words(id, word, definition)')
     .eq('user_id', user.id)
     .order('mastery_score', { ascending: true })
     .limit(20);
 
-  return (
-    <AppShell>
-      <DailyQuizContent userWords={userWords || []} />
-    </AppShell>
-  );
+  return <DailyQuizContent userWords={userWords || []} />;
 }

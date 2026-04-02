@@ -1,5 +1,4 @@
 import { createClient } from '@/lib/supabase/server';
-import AppShell from '@/components/layout/AppShell';
 import WordOfDayContent from '@/components/daily/WordOfDayContent';
 import { redirect } from 'next/navigation';
 
@@ -33,9 +32,5 @@ export default async function WordOfDayPage() {
     userAnswer = ans;
   }
 
-  return (
-    <AppShell>
-      <WordOfDayContent dailyWord={dailyWord} userAnswer={userAnswer} />
-    </AppShell>
-  );
+  return <WordOfDayContent dailyWord={dailyWord} userAnswer={userAnswer} />;
 }

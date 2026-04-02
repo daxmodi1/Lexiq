@@ -1,5 +1,4 @@
 import { createClient } from '@/lib/supabase/server';
-import AppShell from '@/components/layout/AppShell';
 import CollectionsContent from '@/components/collections/CollectionsContent';
 import { redirect } from 'next/navigation';
 
@@ -10,23 +9,62 @@ export default async function CollectionsPage() {
 
   const { data: collections } = await supabase
     .from('collections')
-    .select('*')
+    .select('id, name, created_at')
     .eq('user_id', user.id)
     .order('created_at', { ascending: false });
 
-  // Get words for each collection
-  const collectionsWithWords = await Promise.all(
-    (collections || []).map(async (col: { id: string; name: string; created_at: string }) => {
-      const { data: words, count } = await supabase
-        .from('collection_words')
-        .select('*, words(word, definition, difficulty)', { count: 'exact' })
-        .eq('collection_id', col.id)
-        .order('added_at', { ascending: false })
-        .limit(5);
+  const collectionIds = (collections || []).map((collection) => collection.id);
 
-      return { ...col, words: words || [], wordCount: count || 0 };
-    })
-  );
+  let collectionsWithWords = (collections || []).map((collection) => ({
+    ...collection,
+    words: [] as Array<{
+      id: string;
+      words: {
+        word: string;
+        definition: string;
+        difficulty: string;
+      };
+    }>,
+    wordCount: 0,
+  }));
+
+  if (collectionIds.length > 0) {
+    const { data: collectionWords } = await supabase
+      .from('collection_words')
+      .select('id, collection_id, added_at, words(word, definition, difficulty)')
+      .in('collection_id', collectionIds)
+      .order('added_at', { ascending: false });
+
+    const groupedWords = new Map<string, Array<{
+      id: string;
+      words: {
+        word: string;
+        definition: string;
+        difficulty: string;
+      };
+    }>>();
+    const wordCounts = new Map<string, number>();
+
+    for (const item of collectionWords || []) {
+      const group = groupedWords.get(item.collection_id) || [];
+      wordCounts.set(item.collection_id, (wordCounts.get(item.collection_id) || 0) + 1);
+
+      if (group.length < 5) {
+        group.push({
+          id: item.id,
+          words: item.words,
+        });
+      }
+
+      groupedWords.set(item.collection_id, group);
+    }
+
+    collectionsWithWords = collectionsWithWords.map((collection) => ({
+      ...collection,
+      words: groupedWords.get(collection.id) || [],
+      wordCount: wordCounts.get(collection.id) || 0,
+    }));
+  }
 
   // Get user's vocabulary for adding to collections
   const { data: userWords } = await supabase
@@ -35,11 +73,9 @@ export default async function CollectionsPage() {
     .eq('user_id', user.id);
 
   return (
-    <AppShell>
-      <CollectionsContent
-        initialCollections={collectionsWithWords}
-        userWords={userWords || []}
-      />
-    </AppShell>
+    <CollectionsContent
+      initialCollections={collectionsWithWords}
+      userWords={userWords || []}
+    />
   );
 }

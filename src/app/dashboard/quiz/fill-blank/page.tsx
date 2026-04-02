@@ -1,5 +1,4 @@
 import { createClient } from '@/lib/supabase/server';
-import AppShell from '@/components/layout/AppShell';
 import FillBlankContent from '@/components/quiz/FillBlankContent';
 import { redirect } from 'next/navigation';
 
@@ -15,9 +14,5 @@ export default async function FillBlankPage() {
     .order('mastery_score', { ascending: true })
     .limit(15);
 
-  return (
-    <AppShell>
-      <FillBlankContent userWords={userWords || []} />
-    </AppShell>
-  );
+  return <FillBlankContent userWords={userWords || []} />;
 }

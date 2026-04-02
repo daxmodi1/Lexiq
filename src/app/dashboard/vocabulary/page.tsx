@@ -1,5 +1,4 @@
 import { createClient } from '@/lib/supabase/server';
-import AppShell from '@/components/layout/AppShell';
 import VocabularyContent from '@/components/vocabulary/VocabularyContent';
 import { redirect } from 'next/navigation';
 
@@ -13,13 +12,9 @@ export default async function VocabularyPage() {
 
   const { data: userWords } = await supabase
     .from('user_words')
-    .select('*, words(*)')
+    .select('id, mastery_score, date_added, in_review_queue, words(id, word, definition, difficulty, part_of_speech)')
     .eq('user_id', user.id)
     .order('date_added', { ascending: false });
 
-  return (
-    <AppShell>
-      <VocabularyContent initialWords={userWords || []} />
-    </AppShell>
-  );
+  return <VocabularyContent initialWords={userWords || []} />;
 }

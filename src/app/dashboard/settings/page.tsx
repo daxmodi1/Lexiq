@@ -1,5 +1,4 @@
 import { createClient } from '@/lib/supabase/server';
-import AppShell from '@/components/layout/AppShell';
 import ProfileContent from '@/components/profile/ProfileContent';
 import { redirect } from 'next/navigation';
 
@@ -8,44 +7,37 @@ export default async function ProfilePage() {
   const { data: { user } } = await supabase.auth.getUser();
   if (!user) redirect('/login');
 
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  const { data: profile } = await supabase
-    .from('user_profiles')
-    .select('*')
-    .eq('id', user.id)
-    .single() as { data: any };
-
-  // User words for mastery chart
-  const { data: userWords } = await supabase
-    .from('user_words')
-    .select('mastery_score, date_added, words(difficulty)')
-    .eq('user_id', user.id)
-    .order('date_added', { ascending: true });
-
-  // Quiz history
-  const { data: quizSessions } = await supabase
-    .from('quiz_sessions')
-    .select('*')
-    .eq('user_id', user.id)
-    .order('created_at', { ascending: false })
-    .limit(20);
-
-  // Achievements
-  const { data: achievements } = await supabase
-    .from('achievements')
-    .select('*')
-    .eq('user_id', user.id)
-    .order('earned_at', { ascending: false });
+  const [{ data: profile }, { data: userWords }, { data: quizSessions }, { data: achievements }] = await Promise.all([
+    supabase
+      .from('user_profiles')
+      .select('display_name, created_at, streak_count, best_timed_score')
+      .eq('id', user.id)
+      .single(),
+    supabase
+      .from('user_words')
+      .select('mastery_score, date_added, words(difficulty)')
+      .eq('user_id', user.id)
+      .order('date_added', { ascending: true }),
+    supabase
+      .from('quiz_sessions')
+      .select('id, session_type, score, words_tested, duration_seconds, created_at')
+      .eq('user_id', user.id)
+      .order('created_at', { ascending: false })
+      .limit(20),
+    supabase
+      .from('achievements')
+      .select('badge_type, earned_at')
+      .eq('user_id', user.id)
+      .order('earned_at', { ascending: false }),
+  ]);
 
   return (
-    <AppShell>
-      <ProfileContent
-        profile={profile}
-        email={user.email || ''}
-        userWords={userWords || []}
-        quizHistory={quizSessions || []}
-        achievements={achievements || []}
-      />
-    </AppShell>
+    <ProfileContent
+      profile={profile}
+      email={user.email || ''}
+      userWords={userWords || []}
+      quizHistory={quizSessions || []}
+      achievements={achievements || []}
+    />
   );
 }

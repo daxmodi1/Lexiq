@@ -18,7 +18,7 @@ export default function TopBar({ streakCount = 0, userName }: TopBarProps) {
   const handleSearch = (e: React.FormEvent) => {
     e.preventDefault();
     if (searchValue.trim()) {
-      router.push(`/search?q=${encodeURIComponent(searchValue.trim())}`);
+      router.push(`/dashboard/search?q=${encodeURIComponent(searchValue.trim())}`);
       setSearchValue('');
     }
   };
