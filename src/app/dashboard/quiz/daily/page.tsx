@@ -1,4 +1,5 @@
 import { createClient } from '@/lib/supabase/server';
+import { normalizeWord } from '@/lib/supabase/normalize';
 import DailyQuizContent from '@/components/quiz/DailyQuizContent';
 import { redirect } from 'next/navigation';
 
@@ -18,5 +19,11 @@ export default async function DailyQuizPage() {
     .order('mastery_score', { ascending: true })
     .limit(20);
 
-  return <DailyQuizContent userWords={userWords || []} />;
+  const normalizedUserWords = (userWords || []).map((item: Record<string, unknown>) => ({
+    id: String(item.id ?? ''),
+    mastery_score: Number(item.mastery_score ?? 0),
+    words: normalizeWord(item.words),
+  }));
+
+  return <DailyQuizContent userWords={normalizedUserWords} />;
 }

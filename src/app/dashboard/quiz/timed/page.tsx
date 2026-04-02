@@ -1,4 +1,5 @@
 import { createClient } from '@/lib/supabase/server';
+import { normalizeWord } from '@/lib/supabase/normalize';
 import TimedChallengeContent from '@/components/quiz/TimedChallengeContent';
 import { redirect } from 'next/navigation';
 
@@ -19,9 +20,15 @@ export default async function TimedChallengePage() {
       .single(),
   ]);
 
+  const normalizedUserWords = (userWords || []).map((item: Record<string, unknown>) => ({
+    id: String(item.id ?? ''),
+    mastery_score: Number(item.mastery_score ?? 0),
+    words: normalizeWord(item.words),
+  }));
+
   return (
     <TimedChallengeContent
-      userWords={userWords || []}
+      userWords={normalizedUserWords}
       bestScore={profile?.best_timed_score || 0}
     />
   );

@@ -1,4 +1,5 @@
 import { createClient } from '@/lib/supabase/server';
+import { normalizeWord } from '@/lib/supabase/normalize';
 import VocabularyContent from '@/components/vocabulary/VocabularyContent';
 import { redirect } from 'next/navigation';
 
@@ -16,5 +17,13 @@ export default async function VocabularyPage() {
     .eq('user_id', user.id)
     .order('date_added', { ascending: false });
 
-  return <VocabularyContent initialWords={userWords || []} />;
+  const normalizedUserWords = (userWords || []).map((item: Record<string, unknown>) => ({
+    id: String(item.id ?? ''),
+    mastery_score: Number(item.mastery_score ?? 0),
+    date_added: String(item.date_added ?? ''),
+    in_review_queue: Boolean(item.in_review_queue),
+    words: normalizeWord(item.words),
+  }));
+
+  return <VocabularyContent initialWords={normalizedUserWords} />;
 }
